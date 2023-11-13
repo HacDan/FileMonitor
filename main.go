@@ -10,13 +10,14 @@ import (
 )
 
 func main() {
+	// TODO: Update to use arg or if no arg, cwd
 	cwd, _ := os.Getwd()
 	tree := make(map[string]string)
 	err := walkTree(cwd, tree)	
 	if err != nil {
 		fmt.Println(err)
 	}
-	// TODO: Update to use arg or if no arg, cwd
+
 	for true {
 		newTree := make(map[string]string)
 		err := walkTree(cwd, newTree)
@@ -25,20 +26,12 @@ func main() {
 		}
 		for dir, hash := range newTree {
 			if tree[dir] != hash {
-				fmt.Println(dir, ": ", tree[dir])
-				fmt.Println(dir, ": ", newTree[dir]) 
 				fmt.Println("Changed!")
 			}
 		}
 		tree = newTree
+		// TODO: Upate to a CLI value with default
 		time.Sleep(5 * time.Second)
-	}
-	printMap(tree)
-}
-
-func printMap(hashes map[string]string) {
-	for k, v := range hashes {
-		fmt.Println(k, ": ", v)
 	}
 }
 
