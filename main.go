@@ -5,15 +5,15 @@ import (
 	"encoding/hex"
 	"fmt"
 	"os"
-	"time"
 	"path/filepath"
+	"time"
 )
 
 func main() {
 	// TODO: Update to use arg or if no arg, cwd
 	cwd, _ := os.Getwd()
 	tree := make(map[string]string)
-	err := walkTree(cwd, tree)	
+	err := walkTree(cwd, tree)
 	if err != nil {
 		fmt.Println(err)
 	}
